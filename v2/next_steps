@@ -1,0 +1,60 @@
+
+create msgAdapterBase
+    Define AdapterID class
+    Define getId(DataStream)
+    Define processData(DataStream, msgReceiver)
+
+Define DataStreamInterface
+
+
+
+
+MsgAdapters/impl details are all hidden from the application
+    Add MsgReceiverX interfaces, module msgReceiver implements each of them they want to support
+    MsgReceiver default constructor adds itself to MsgReceiverBase map
+    ReceiveMsg function is pure virtual - force compile error if not implemented
+
+Adding support for receive/send message type requires that it be added to only one place
+
+Msg serialization/deserialization is independent from transport protocol 
+
+
+
+
+
+
+### Today:
+
+
+Create msgAdapter, msgReceiver, and build - test member visibility
+
+Create BaseMsgAdapter
+Create BaseMsgReceiver
+
+
+
+GetHeader - Defined on BaseMsgAdapter class: takes a DataStream, returns an AdapterID
+WriteHeader - Defined on BaseMsgAdapter class: takes a DataStream, calls getId and writes it to the dataStream
+
+
+############
+Create several ReveiveMsgX classes
+
+Create Impl class that implements them
+
+
+test send various headers, test registration and retreival
+
+
+################
+
+DataStreamProcessorImpl
+    public static: registerDataStreamProcessor(DataStreamProcessor)
+    public: processDataStream(DataStream)
+    private: DataStreamProcessorMap
+
+ReceiveMsgX
+    Constructor builds a function(obj) that can process a DataStream into msgX, and can forward msg to receive(msgX), registers it with DSPMap. Constructs new DataStreamProcessor, passing it ref to self.  We impl msgx receiverInt
+    public virtual receive(msgX msg)
+    
+
