@@ -52,7 +52,9 @@ class MsgReceiver :
     public ReceiveMsg6
 {
     public:
-        MsgReceiver(){};
+        MsgReceiver() :
+            ReceiveMsg1(this),
+            ReceiveMsg6(this){};
         virtual void receiveDataStream(std::deque<int>* data);
         virtual void receive(msg1 msg);
         virtual void receive(msg6 msg);

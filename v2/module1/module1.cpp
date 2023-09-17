@@ -51,7 +51,9 @@ class MsgReceiver :
     public ReceiveMsg5
 {
     public:
-        MsgReceiver(){};
+        MsgReceiver():
+            ReceiveMsg3(this),
+            ReceiveMsg5(this){};
         virtual void receiveDataStream(std::deque<int>* data);
         virtual void receive(msg3 msg);
         virtual void receive(msg5 msg);
@@ -61,6 +63,7 @@ class MsgReceiver :
 void MsgReceiver::receiveDataStream(std::deque<int>* in_data)
 {
     DataStream* data = new DataStream(in_data);
+    //std::cout << "Calling receiver: " << this << std::endl;
     this->DataStreamReceiverInterface::receiveDataStream(data);
 }
 void MsgReceiver::receive(msg3 msg) 
@@ -70,7 +73,7 @@ void MsgReceiver::receive(msg3 msg)
 
 void MsgReceiver::receive(msg5 msg) 
 {
-    std::cout << "Mod 1Receive msg5: " << msg.data << std::endl;
+    std::cout << "Mod1 Receive msg5: " << msg.data << std::endl;
 }
 
 Module1::Module1()
