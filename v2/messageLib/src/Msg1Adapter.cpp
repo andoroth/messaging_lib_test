@@ -15,7 +15,15 @@ void Msg1Adapter::processDataStream(DataStream* data)
     msgReceiver->receive(*msg);
 }
 
+DataStream* Msg1Adapter::createDataStream(msg1* msg)
+{
+    DataStream* data = new DataStream;
+    MsgAdapterBase::writeHeader(id, data);
+    data->push_back(msg->data);
+    return data;
+}
+
 int Msg1Adapter::getId()
 {
-    return 1;
+    return id;
 }

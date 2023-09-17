@@ -1,14 +1,15 @@
 #pragma once
 
-namespace mod1{
 class MsgSender;
 class MsgReceiver;
-class Module1
+
+namespace mod3{
+class Module3
 {
     public:
-        Module1();
-        void sendMsg1(int);
-        void sendMsg2(int);
+        Module3();
+        void sendMsg5(int);
+        void sendMsg6(int);
     private:
         MsgSender* ms;
         MsgReceiver* mr;
