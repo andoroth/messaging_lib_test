@@ -1,5 +1,4 @@
 #!/usr/bin/bash
-
 cd messageLib
 g++ -c *.cpp
 ar -rc ../lib/libMessaging.a *.o
